@@ -1,3 +1,12 @@
+const validator = require("validator");
+const getNotes = require("./notes");
+
+const getN = getNotes();
+console.log(getN);
+
+console.log(validator.isEmail("hamza.zaman40@gmail.com"));
+console.log(validator.isURL("http:/ajkhda"));
+
 // const add = require("./utils");
 
 // // const fs = require("fs");
@@ -11,7 +20,3 @@
 // const sum = add(4, 2);
 
 // console.log(sum);
-
-const getNotes = require("./notes");
-
-console.log(getNotes());
