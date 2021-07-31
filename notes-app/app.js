@@ -1,11 +1,21 @@
 const validator = require("validator");
 const getNotes = require("./notes");
+const chalk = require("chalk");
 
 const getN = getNotes();
 console.log(getN);
 
-console.log(validator.isEmail("hamza.zaman40@gmail.com"));
-console.log(validator.isURL("http:/ajkhda"));
+const bl = chalk.green(validator.isEmail("hamza.zaman40@gmail.com"));
+const gr = chalk.yellow(validator.isURL("http:/ajkhda"));
+
+console.log(bl);
+console.log(gr);
+
+console.log(chalk.bgRed("yellow"));
+console.log(chalk.bold("Hamza"));
+
+console.log(chalk.cyan.underline.bold("Hamzaaaaa"));
+console.log(chalk.red.underline.bold("Hamzaaaaa"));
 
 // const add = require("./utils");
 
