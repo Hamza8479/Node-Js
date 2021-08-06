@@ -1,4 +1,6 @@
 const fs = require("fs");
+const chalk = require("chalk");
+const { title } = require("process");
 
 const getNotes = () => {
   return "Here it is my Node.js notes in which I am gonna write down everything I learn";
@@ -6,9 +8,7 @@ const getNotes = () => {
 
 const addNote = (title, body) => {
   const notes = loadNotes();
-  const duplicateNotes = notes.filter((notes) => {
-    return notes.title === title;
-  });
+  const duplicateNotes = notes.filter((notes) => notes.title === title);
 
   if (duplicateNotes.length === 0) {
     notes.push({
@@ -17,10 +17,23 @@ const addNote = (title, body) => {
     });
 
     saveNotes(notes);
-    console.log("New note added!");
+    console.log(chalk.green.inverse("New note added!"));
   } else {
-    console.log("Note title taken!");
+    console.log(chalk.red.inverse("Note title taken!"));
   }
+};
+
+const removeNote = (title) => {
+  const notes = loadNotes();
+  const removeNotes = notes.filter((curr) => curr.title !== title);
+  if (notes.length > removeNotes.length) {
+    saveNotes(removeNotes);
+    console.log(chalk.green.inverse("Note removed!"));
+  } else {
+    console.log(chalk.red.inverse("No note found!"));
+  }
+
+  // console.log(title);
 };
 
 const saveNotes = (notes) => {
@@ -43,4 +56,5 @@ const loadNotes = () => {
 module.exports = {
   getNotes: getNotes,
   addNote: addNote,
+  removeNote: removeNote,
 };
